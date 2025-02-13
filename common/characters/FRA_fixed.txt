@@ -1,0 +1,40 @@
+characters={
+	FRA_charles_maurras_fixed = {
+		name = FRA_charles_maurras
+		portraits = {
+			civilian = {
+				large = GFX_portrait_FRA_charles_maurras
+				small = GFX_portrait_FRA_charles_maurras_small
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = charles_maurras
+			allowed  = {
+				original_tag  = FRA
+			}
+			available  = {
+				OR = {
+					has_completed_focus = FRA_integralism 
+					has_completed_focus = FRA_orleanist_restoration 
+				}
+				OR  = {
+					has_government  = fascism 
+					has_government  = neutrality
+				}
+			}
+			visible  = {
+				has_dlc = "La Resistance"
+			}
+			cost  = 75.000
+			traits  = {
+				national_integralist 
+			}
+			do_effect  = {
+			}
+			ai_will_do  = {
+				base = 5000
+			}
+		}		
+	}
+}

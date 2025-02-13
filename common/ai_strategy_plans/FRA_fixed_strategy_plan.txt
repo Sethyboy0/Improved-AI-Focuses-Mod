@@ -1,7 +1,20 @@
 FRA_alternate_plan_fascist_lar = {
 	name = "France fixed alternate plan: France is going fascist"
-	desc = "Updated to make it work most of the time."
-	# Moved political decisions up so that they get done on time.
+	desc = "Updated to make it work consistently."
+	# The vanilla plan has the following issues:
+	#	1. France can take too long to take the focuses that prevent war with Germany. 
+	#		Especially because going down this path disables the historical German path which usually leads to a faster Demand Sudetenland.
+	#	2. France loses too much stability during the process and ends up in a communist civil war.
+	#	3. France ends up crippled by the swich due to low stability and low PP gain (which compound each other).
+	#	4. France doesn't attempt to align belgium before germany attacks, locking out of that part of the focus tree.
+	#
+	# The strategy plan helps address some of the above by making France focus on taking important political focuses
+	# at the expense of economic focuses, which is generally fine as they aren't in danger nearly as quickly when Germany
+	# isn't invading.
+	#
+	# That being said, some issues are outside the scope of a strategy plan:
+	#	- Taking the stability/PP advisor requires a fix on the characters side as the advisor has no base AI weight and so can't be influenced by the plan.
+	# 	- Focus requirements could probably use an update so they can bypass the belgium focus or install a puppet if they're already at war or something.
 
 	allowed = {
 		original_tag = FRA
@@ -32,24 +45,23 @@ FRA_alternate_plan_fascist_lar = {
 
 	ai_national_focuses = {
 		#1936
-		FRA_devalue_the_franc
 		FRA_revive_the_national_bloc
-		FRA_utilize_the_leagues #Turns off historical german AI path. Their focuses will be random from now on.
+		FRA_utilize_the_leagues # Turns off historical german AI path. Their focuses will be random from now on.
+		FRA_devalue_the_franc
 		FRA_invest_in_the_metropole
 		FRA_metropolitan_france
-		
 		#1937
 		FRA_algerie_france
-		FRA_industrial_expansion
-		FRA_national_regeneration #Takes at least a couple focuses to get enough facist support
-		FRA_integralism #35 days
+		FRA_national_regeneration # Takes about 4 focuses to build up enough fascist/unaligned support
+		FRA_integralism #35 days. Do this ASAP for the stability advisor.
+		FRA_industrial_expansion # Might as well finish the civs.
 		FRA_political_unity
-		FRA_ban_communism #Super likely to civil war without this
+		FRA_ban_communism #Super likely to civil war without this because of the low stability.
 		#1938
-		#Anschluss cannot be randomly chosen before 38, but it has extremely high weight.
-		#Once Anschluss is done, high weight makes demand sudetenland extremely likely once requirements are met.
-		#If diplomatic freedom is not finished when sudetenland is done, there will be war with germany. Finishing at the same time is okay.
-		#The unmodded tree does 2 focuses before going for it and in my test games BARELY gets it in. I don't think that's safe.
+		# Anschluss cannot be randomly chosen before 38, but it has extremely high weight.
+		# Once Anschluss is done, high weight makes demand sudetenland extremely likely once requirements are met.
+		# If diplomatic freedom is not finished when sudetenland is done, there will be war with germany. Finishing at the same time is okay.
+		# In theory germany could finish it in as little as 105 days.
 		FRA_begin_rearmament
 		FRA_diplomatic_freedom #35 days
 		FRA_extra_research_slot
@@ -57,48 +69,25 @@ FRA_alternate_plan_fascist_lar = {
 		FRA_towards_a_new_europe
 		FRA_establish_spheres_of_influence
 		#1939
-		#Germany cannot randomly select reassert eastern claims or do danzig or war before 39.
-		#They have high weights are are likely to be chosen once there and reqs are met.
-		#This gives a minimum of 105 days before germany can possibly start picking around maginot
-		FRA_destroy_decadence
+		# Germany cannot randomly select reassert eastern claims or do danzig focuses before 39.
+		# They have high weights are are likely to be chosen once there and reqs are met.
+		# This gives a minimum of 105 days before germany can possibly start picking around maginot
 		FRA_align_belgium
+		FRA_destroy_decadence # For stability
 		FRA_agricultural_protectionism
-		FRA_protect_the_rights_of_man
+		FRA_protect_the_rights_of_man # For stability
 		FRA_economic_devolution
-		#1940
-		FRA_aggressive_focus
-		FRA_extra_research_slot_2 # Do whenever it's available.
+		#1940+
 		FRA_work
-		FRA_grow_the_empire
+		# Focus on getting army reform.
+		FRA_aggressive_focus
 		FRA_battle_of_maneuver
-		FRA_motorized_focus
-		#1941
 		FRA_mechanized_focus
 		FRA_light_medium_armor
 		FRA_army_reform
-		FRA_expand_to_the_suez
-		#1942
-		FRA_dominate_the_middle_east
+		# Grab the dockyards and let RNG take the wheel.
 		FRA_naval_rearmament
-		FRA_capital_ship_focus
-		FRA_fighter_focus
-	}			
-
-	research = {
-
-	}
-
-	# These doesn't even work lol.
-	ideas = {
-		low_economic_mobilisation = 0
-	}
-
-	# Neither do these.
-	traits = {
-		national_integralist = 10000
-		silent_workhorse = 5
-		industrial_concern = 0
-	}
+	}	
 
 	# Keep small, as it is used as a factor for some things (such as research needs)
 	# Recommended around 1.0. Useful for relation between plans
