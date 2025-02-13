@@ -1,0 +1,208 @@
+CZE_alternate_strategy_plan_fascist = {
+	name = "THE BOHEMIAN EMPIRE RIDES AGAIN Fixed"
+	desc = "Fixed to make it actually work and join the Axis"
+
+	allowed = {
+		original_tag = CZE
+	}
+	enable = {
+		OR = {
+			has_country_flag = CZE_AI_RANDOM_FASCIST
+			has_game_rule = {
+				rule = CZE_ai_behavior
+				option = FASCIST
+			}
+		}
+	}
+	abort = {
+		
+	}
+
+	ai_national_focuses = {
+		# 1936
+		CZE_political_direction
+		CZE_go_right
+		CZE_czech_fascism # Do ASAP. Will take a while to get the support for this.
+		CZE_industrial_legacy
+		# The AI starts trying to buy the army EXP genius now. Take strategy
+		# decisions focus to get that over with quickly so it can work on expanding 
+		# support for fascism with its remaining PP income so that by the time it 
+		# finishes with german_leanings it will have enough support and PP to flip.
+		# This also allows it to get czech_fascism at a reasonable time.
+		# I tried other timings to help it not lose all the stability to civil support but they don't work.
+		CZE_strategy_decisions
+		CZE_balanced_1
+		CZE_balanced_2
+		CZE_balanced_3
+		CZE_united_population
+		CZE_arms_exports_1
+		# DEC 1937. In 1938 a planless fascist germany is likely to anschluss + demand sudetenland ASAP.
+		# The other 2 czech-deleting focuses are very likely after.
+		CZE_german_leanings
+		CZE_arms_exports_2
+		CZE_arms_exports_3
+		# Let RNG take the wheel
+	}
+
+	research = {
+		industry = 30.0
+		infantry_tech = 5.0
+		artillery = 18.0
+		support_tech = 10
+	}
+
+	ideas = {
+		
+	}
+
+	traits = {
+		fascist_demagogue = 100
+		captain_of_industry = 5
+		war_industrialist = 5
+		prince_of_terror = 0
+		backroom_backstabber = 5
+	}
+
+	# Keep small, as it is used as a factor for some things (such as research needs)
+	# Recommended around 1.0. Useful for relation between plans
+	weight = {
+		factor = 1.0
+		modifier = {
+			factor = 1.0
+		}
+	}
+
+	focus_factors = {
+		CZE_military_research_institute = 10
+		CZE_military_aeronautical_institute = 5
+		CZE_motorization_scheme = 8
+		CZE_armour_bonus_1 = 10
+		CZE_armour_bonus_ii = 10
+		CZE_import_foreign_bombers = 5
+		CZE_air_is_our_sea = 5
+		# Using CZE_ally_germany strategy to make them join the faction, so there's no reason to give up land or be a puppet.
+		CZE_german_minor_ally = 0
+		CZE_german_puppet = 0
+		CZE_deliver_sudetenland = 0
+		# Since we don't need to rush, might as well dodge the civil war.
+		CZE_exclude_the_slovaks = 0
+		CZE_hungarian_situation = 0.1
+	}
+
+}
+
+CZE_ally_germany = {
+	name = "Czechoslovakia Ally Germany Plan"
+	desc = "Workaround for crappy CZE and GER focuses so that fascist CZE can actually survive."
+
+	# Use "strategic reasons" to join the axis instead of the intended focuses because the focuses have the following major issuess:
+	#	- The bootlicking focuses drastically increase the weight for Germany's Befriend Czechoslovakia focus,
+	#		but CZE_deliver_sudetenland causes Germany to bypass Demand Sudetenland focus which locks out the friendly one.
+	#	- Setting weights on german focuses doesn't even matter if Germany is following the historical strategy since it will always demand sudetenland
+	#	- The befriend focus is exclusive to the non-historical side of the Rhineland tree so it may not even be an option.
+	#	- Becoming a German puppet after delivering sudetendland will cause germany to turn all of the czechs states into a reichskommesariat.
+	#	- Becoming a satelite or ally takes too long because of the absurdly high facist requirements on the previous focuses.
+	#	- Non-historical Germany demands sudetenland even
+
+	allowed = {
+		original_tag = CZE
+	}
+	enable = {
+		has_completed_focus = CZE_german_leanings
+		OR = {
+			is_in_faction = no
+			is_in_faction_with = GER
+		}
+		GER = {
+			has_government = fascism
+		}
+		has_government = fascism
+	}
+	abort = {
+		OR = {
+			GER = {
+				NOT = {
+					has_government = fascism
+				}
+			}
+			AND = {
+				NOT = {
+					has_government = fascism
+				}
+				NOT = {
+					is_in_faction_with = GER
+				}
+			}
+		}
+	}
+
+	ai_strategy = {
+		type = alliance
+		id = GER
+		value = 500
+	}
+}
+
+GER_ally_CZE = {
+	name = "Germany Ally Czechoslovakia Plan"
+	desc = "Workaround for crappy CZE and GER focuses so that fascist CZE can actually survive."
+
+	allowed = {
+		original_tag = GER
+	}
+	enable = {
+		CZE = {
+			has_completed_focus = CZE_german_leanings
+			has_government = fascism
+			OR = {
+				is_in_faction = no
+				is_in_faction_with = GER
+			}
+		}
+		has_government = fascism
+	}
+	abort = {
+		OR = {
+			NOT = {
+				has_government = fascism
+			}
+			CZE = {
+				AND = {
+					NOT = {
+						has_government = fascism
+					}
+					NOT = {
+						is_in_faction_with = GER
+					}
+				}
+			}
+		}
+	}
+
+	# This is janky as fuck but it works.
+	ai_strategy = {
+		type = alliance
+		id = CZE
+		value = 500
+	}
+	ai_strategy = {
+		type = befriend
+		id = CZE
+		value = 500
+	}
+	ai_strategy = {
+		type = conquer
+		id = CZE
+		value = -999
+	}
+	ai_strategy = {
+		type = protect
+		id = CZE
+		value = 10
+	}
+	ai_strategy = {
+		type = ignore_claim
+		id = CZE
+		value = 1
+	}
+}
