@@ -72,6 +72,7 @@ CZE_alternate_strategy_plan_fascist = {
 		}
 	}
 
+	# I'm not sure this even works.
 	focus_factors = {
 		CZE_military_research_institute = 10
 		CZE_military_aeronautical_institute = 5
@@ -102,7 +103,7 @@ CZE_ally_germany = {
 	#	- The befriend focus is exclusive to the non-historical side of the Rhineland tree so it may not even be an option.
 	#	- Becoming a German puppet after delivering sudetendland will cause germany to turn all of the czechs states into a reichskommesariat.
 	#	- Becoming a satelite or ally takes too long because of the absurdly high facist requirements on the previous focuses.
-	#	- Non-historical Germany demands sudetenland even
+	#	- Non-historical Germany demands sudetenland even faster and it already takes too long to do the intended way without some discredit goverment timing or something.
 
 	allowed = {
 		original_tag = CZE

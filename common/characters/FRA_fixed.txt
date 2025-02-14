@@ -33,6 +33,8 @@ characters={
 			do_effect  = {
 			}
 			ai_will_do  = {
+				# Unlike all the other ai modifying stuff in the strategy plans and what not, this actually fucking works.
+				# You can see it in the aiview command.
 				base = 5000
 			}
 		}		
