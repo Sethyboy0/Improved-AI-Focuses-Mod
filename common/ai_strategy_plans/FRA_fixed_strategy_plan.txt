@@ -70,7 +70,7 @@ FRA_alternate_plan_fascist_lar = {
 		FRA_establish_spheres_of_influence
 		#1939
 		# Germany cannot randomly select reassert eastern claims or do danzig focuses before 39.
-		# They have high weights are are likely to be chosen once there and reqs are met.
+		# They have high weights and are likely to be chosen once there and reqs are met.
 		# This gives a minimum of 105 days before germany can possibly start picking around maginot
 		FRA_align_belgium
 		FRA_destroy_decadence # For stability
