@@ -1,0 +1,27 @@
+characters={
+	POR_alberto_monsaraz_fixed = {
+		advisor = {
+			slot = political_advisor
+			idea_token = POR_alberto_monsaraz
+			allowed = {
+				original_tag = POR
+				has_dlc = "La Resistance"
+			}
+			available = {
+				has_completed_focus = POR_national_syndicalism 
+			}
+			traits = {
+				national_integralist 
+			}
+			ai_will_do = {
+				base = 5000
+			}
+		}
+		name = POR_alberto_monsaraz
+		portraits = {
+			army = {
+				small = "GFX_idea_POR_alberto_monsaraz"
+			}
+		}
+	}
+}
